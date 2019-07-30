@@ -1,0 +1,2 @@
+# Source code of ["The Go Programming Language"](http://www.gopl.io/)
+
