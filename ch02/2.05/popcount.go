@@ -13,7 +13,7 @@ func init() {
 	}
 }
 
-func PopCount(x uint64) int {
+func popCount(x uint64) int {
 	return int(pc[byte(x>>(0*8))] +
 		pc[byte(x>>(1*8))] +
 		pc[byte(x>>(2*8))] +
@@ -24,16 +24,15 @@ func PopCount(x uint64) int {
 		pc[byte(x>>(7*8))])
 }
 
-func PopCountLoop(x uint64) int {
+func popCountLoop(x uint64) int {
 	c := 0
-	var i uint
-	for i = 0; i < 8; i++ {
+	for i := uint(0); i < 8; i++ {
 		c += int(pc[byte(x>>(i*8))])
 	}
 	return c
 }
 
-func PopCountBit(x uint64) int {
+func popCountBit(x uint64) int {
 	c := 0
 	for ; x > 0; x >>= 1 {
 		c += int(x & 0x01)
@@ -41,7 +40,7 @@ func PopCountBit(x uint64) int {
 	return c
 }
 
-func PopCountClear(x uint64) int {
+func popCountClear(x uint64) int {
 	c := 0
 	for ; x > 0; x = x & (x - 1) {
 		c++
@@ -54,18 +53,18 @@ func main() {
 	var start time.Time
 
 	start = time.Now()
-	fmt.Printf("pop count: %d\n", PopCount(x))
-	fmt.Printf("PopCount: %v elapsed\n", time.Since(start))
+	fmt.Printf("pop count: %d\n", popCount(x))
+	fmt.Printf("popCount: %v elapsed\n", time.Since(start))
 
 	start = time.Now()
-	fmt.Printf("pop count: %d\n", PopCountLoop(x))
-	fmt.Printf("PopCountLoop: %v elapsed\n", time.Since(start))
+	fmt.Printf("pop count: %d\n", popCountLoop(x))
+	fmt.Printf("popCountLoop: %v elapsed\n", time.Since(start))
 
 	start = time.Now()
-	fmt.Printf("pop count: %d\n", PopCountBit(x))
-	fmt.Printf("PopCountBit: %v elapsed\n", time.Since(start))
+	fmt.Printf("pop count: %d\n", popCountBit(x))
+	fmt.Printf("popCountBit: %v elapsed\n", time.Since(start))
 
 	start = time.Now()
-	fmt.Printf("pop count: %d\n", PopCountClear(x))
-	fmt.Printf("PopCountClear: %v elapsed\n", time.Since(start))
+	fmt.Printf("pop count: %d\n", popCountClear(x))
+	fmt.Printf("popCountClear: %v elapsed\n", time.Since(start))
 }
