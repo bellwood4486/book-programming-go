@@ -1,3 +1,4 @@
+// 参考：https://github.com/torbiak/gopl/blob/master/ex7.12/main.go
 package main
 
 import (
