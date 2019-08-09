@@ -12,11 +12,14 @@ func TestSplit(t *testing.T) {
 		want  int
 	}{
 		{"a:b:c", ":", 3},
+		{"abc", ":", 1},
 	}
-	for _, test := range tests {
-		words := strings.Split(test.input, test.sep)
-		if got := len(words); got != test.want {
-			t.Errorf("strings.Split(%q, %q) returned %d words, want %d", test.input, test.sep, got, test.want)
-		}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			words := strings.Split(tt.input, tt.sep)
+			if got := len(words); got != tt.want {
+				t.Errorf("strings.Split(%q, %q) returned %d words, want %d", tt.input, tt.sep, got, tt.want)
+			}
+		})
 	}
 }
