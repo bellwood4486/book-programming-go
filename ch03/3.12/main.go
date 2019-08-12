@@ -1,5 +1,10 @@
 package anagram
 
+import (
+	"sort"
+	"strings"
+)
+
 func isAnagram(s1, s2 string) bool {
 	m1 := make(map[rune]int)
 	m2 := make(map[rune]int)
@@ -19,4 +24,12 @@ func isAnagram(s1, s2 string) bool {
 		}
 	}
 	return true
+}
+
+func isAnagram2(s1, s2 string) bool {
+	s1a := strings.Split(s1, "")
+	s2a := strings.Split(s2, "")
+	sort.Strings(s1a)
+	sort.Strings(s2a)
+	return strings.Join(s1a, "") == strings.Join(s2a, "")
 }
