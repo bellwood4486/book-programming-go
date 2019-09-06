@@ -18,6 +18,7 @@ func Test_tagfreq(t *testing.T) {
 		wantErr bool
 	}{
 		{"sample",
+			// language=HTML
 			args{strings.NewReader(`<html><head></head><body><p>test1</p><p>test2</p></body></html>`)},
 			map[string]int{"html": 1, "head": 1, "body": 1, "p": 2}, false},
 	}
